@@ -1,0 +1,7 @@
+#+title: Inventory ClamAV
+
+CFEngine policy to inventory some interesting information from ClamAV.
+
+- ClamAV version
+- ClamAV definitions version
+- ClamAV definitions date

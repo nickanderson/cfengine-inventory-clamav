@@ -1,0 +1,40 @@
+body file control
+{
+  namespace => "nickanderson";
+}
+bundle agent inventory_clamav
+# @brief Inventory ClamAV
+# @inventory ClamAV version
+# @inventory ClamAV definitions version
+# @inventory ClamAV definitions date
+{
+  vars:
+      "_bin_clamscan"
+        string => "/usr/bin/clamscan";
+
+      # Example clamscan ---version output: ClamAV 0.102.2/25803/Tue May 5 12:19:25 2020
+      "_clamscan_version_data"
+        data => data_regextract( "\w+(?<binary_version>.*)/(?<definitions_version>\d+)/(?<definitions_date>.*)",
+                                 execresult( "$(_bin_clamscan) --version", noshell)),
+        if => isexecutable( $(_bin_clamscan) );
+
+      "binary_version"
+        string => "$(_clamscan_version_data[binary_version])",
+        meta => { "inventory", "attribute_name=ClamAV version" },
+        if => isvariable( "_clamscan_version_data" );
+
+      "definitions_version"
+        string => "$(_clamscan_version_data[definitions_version])",
+        meta => { "inventory", "attribute_name=ClamAV definitions version" },
+        if => isvariable( "_clamscan_version_data" );
+
+      "definitions_date"
+        string => "$(_clamscan_version_data[definitions_date])",
+        meta => { "inventory", "attribute_name=ClamAV definitions date" },
+        if => isvariable( "_clamscan_version_data" );
+}
+
+bundle agent __main__
+{
+      methods: "nickanderson:inventory_clamav";
+}
