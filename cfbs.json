@@ -2,7 +2,7 @@
     "modules": {
         "inventory-clamav": {
             "description": "Inventory useful information from ClamAV (version, definitions version, definitions date)",
-            "tags": ["inventory"],
+            "tags": ["inventory", "antivirus" ],
             "version": "1.0.0",
             "repo": "https://github.com/nickanderson/cfengine-inventory-clamav",
             "commit": "1d872d1771921b0f8d92da56899d8b61d37dd5ca",
