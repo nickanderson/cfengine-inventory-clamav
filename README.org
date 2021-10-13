@@ -5,3 +5,13 @@ CFEngine policy to inventory some interesting information from ClamAV.
 - ClamAV version
 - ClamAV definitions version
 - ClamAV definitions date
+
+* Screenshots                                                        :ATTACH:
+:PROPERTIES:
+:ID:       7e808151-3b0e-43c6-a21f-37a276d6fb79
+:END:
+
+#+DOWNLOADED: file:///home/nickanderson/Pictures/screenshots/2021-10-13_15-51-06.png @ 2021-10-13 15:51:47
+[[attachment:2021-10-13_15-51-47_2021-10-13_15-51-06.png]]
+
+
