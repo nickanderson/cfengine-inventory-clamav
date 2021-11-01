@@ -1,12 +1,13 @@
 {
-    "modules": {
+    "name": "Inventory ClamAV",
+    "description": "Inventory useful information from ClamAV (version, definitions version, definitions date)",
+    "type": "module",
+    "provides": {
         "inventory-clamav": {
             "description": "Inventory useful information from ClamAV (version, definitions version, definitions date)",
             "tags": ["inventory", "antivirus" ],
-            "version": "1.0.0",
             "repo": "https://github.com/nickanderson/cfengine-inventory-clamav",
             "by": "https://github.com/nickanderson",
-            "commit": "1d872d1771921b0f8d92da56899d8b61d37dd5ca",
             "steps": [
                 "copy policy/main.cf services/inventory-clamav/main.cf",
                 "json cfbs/def.json def.json"
