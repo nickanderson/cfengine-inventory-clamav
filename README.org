@@ -8,8 +8,7 @@ CFEngine policy to inventory some interesting information from ClamAV.
 - ClamAV definitions version :: The version of the ClamAV definitions installed.
 - ClamAV definitions date :: The date when the installed definitions were released.
 
-#+DOWNLOADED: file:///home/nickanderson/Pictures/screenshots/2021-10-13_15-51-06.png @ 2021-10-13 15:51:47
-[[attachment:2021-10-13_15-51-47_2021-10-13_15-51-06.png]]
+[[https://raw.githubusercontent.com/nickanderson/cfengine-inventory-clamav/main/data/clamav-inventory-attributes.png]]
 
 * Configuration
 
@@ -28,3 +27,4 @@ CFEngine policy to inventory some interesting information from ClamAV.
          }
      }
    #+end_src
+   [[https://raw.githubusercontent.com/nickanderson/cfengine-inventory-clamav/main/data/clamav-format-date.png]]
