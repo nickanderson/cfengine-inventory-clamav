@@ -7,8 +7,19 @@ bundle agent inventory_clamav
 # @inventory ClamAV version
 # @inventory ClamAV definitions version
 # @inventory ClamAV definitions date
+# @variable nickanderson:inventory_clamav.definitions_date_format_string Format to apply to date string, e.g. %Y-%m-%d
 {
   vars:
+
+      # As of 2022-10-05 date was not part of paths in stdlib, so we try to use
+      # it if it does become available and fall back
+
+      "_bin_date"
+        string => ifelse( isvariable( "default:paths.date" ), "$(default:paths.date)",
+                          "/usr/bin/date" ),
+        if => isexecutable( "/usr/bin/date" );
+
+
       "_bin_clamscan"
         string => "/usr/bin/clamscan";
 
@@ -28,10 +39,20 @@ bundle agent inventory_clamav
         meta => { "inventory", "attribute_name=ClamAV definitions version" },
         if => isvariable( "_clamscan_version_data" );
 
+
+      # Inventory the raw date if definitions_date_format_string is not specified.
       "definitions_date"
         string => "$(_clamscan_version_data[definitions_date])",
         meta => { "inventory", "attribute_name=ClamAV definitions date" },
-        if => isvariable( "_clamscan_version_data" );
+        unless => isvariable( definitions_date_format_string );
+
+      # Inventory the formatted date if definitions_date_format_string is specified.
+      "definitions_date"
+        string => "$(with)",
+        meta => { "inventory", "attribute_name=ClamAV definitions date" },
+        with => execresult( concat( '$(_bin_date) --date="$(_clamscan_version_data[definitions_date])" ',
+                                    '"+$(definitions_date_format_string)"'), useshell),
+        if => isvariable( definitions_date_format_string );
 }
 
 bundle agent __main__

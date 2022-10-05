@@ -2,16 +2,29 @@
 
 CFEngine policy to inventory some interesting information from ClamAV.
 
-- ClamAV version
-- ClamAV definitions version
-- ClamAV definitions date
+* Inventory
 
-* Screenshots                                                        :ATTACH:
-:PROPERTIES:
-:ID:       7e808151-3b0e-43c6-a21f-37a276d6fb79
-:END:
+- ClamAV version :: The version of ClamAV installed.
+- ClamAV definitions version :: The version of the ClamAV definitions installed.
+- ClamAV definitions date :: The date when the installed definitions were released.
 
 #+DOWNLOADED: file:///home/nickanderson/Pictures/screenshots/2021-10-13_15-51-06.png @ 2021-10-13 15:51:47
 [[attachment:2021-10-13_15-51-47_2021-10-13_15-51-06.png]]
 
+* Configuration
 
+** Variables
+
+- nickanderson:inventory_clamav.definitions_date_format_string :: Format to apply to date string, e.g. =%Y-%m-%d=.
+
+   Example setting via Augments:
+   #+begin_src json
+     {
+         "variables": {
+             "nickanderson:inventory_clamav.definitions_date_format_string": {
+                 "value": "%Y-%m-%d",
+                 "comment": "Format the clamav definitions date in ISO 8601 format so that it sorts nicely."
+             }
+         }
+     }
+   #+end_src
