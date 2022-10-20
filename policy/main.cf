@@ -54,7 +54,10 @@ bundle agent inventory_clamav
                                     '"+$(definitions_date_format_string)"'), useshell),
         if => isvariable( definitions_date_format_string );
 }
-
+body file control
+{
+        namespace => "default";
+}
 bundle agent __main__
 {
       methods: "nickanderson:inventory_clamav";
